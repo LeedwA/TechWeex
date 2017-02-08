@@ -10,8 +10,8 @@
     compile 'com.github.goEcar:EcarWeex:+'
 
 ##3.调用方法
-    1)Android加载Weex
-    一.Application加入<br>
+*一.Android加载Weex*<br>
+1)Application加入<br>
  ```
 @Override
 public void onCreate() {
@@ -22,7 +22,7 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
  WXSDKEngine.initialize(this,config);
 }
 ```
-二.Activity加入
+2)Activity加入<br>
 ```  @Override
     protected void onCreate(Bundle savedInstanceState) {
         ...
@@ -61,12 +61,12 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
     }
   }
  ```
-    三.Assest加入对应的.we文件生成的.js（此处为hello.js）   <br>
+ 3)Assest加入对应的.we文件生成的.js（此处为hello.js）   <br>
     生成方法   <br>
              1.cmd 进入.we文件目录 <br>
              2.执行  weex  xxxx.we命令生成js文件 <br>
              3.将js文件复制到asset文件夹 <br>
-    2)Android自定义Weex控件<br>
+    二.Android自定义Weex控件<br>
  ```
  public class TextImageAdapter implements IWXImgLoaderAdapter {
   @Override
@@ -85,7 +85,7 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
   }  
 }
 ```
-3)weex调用Android方法
+三.weex调用Android方法
 ```
        Application里先注册：
        WXSDKEngine.registerModule("mModule",TestModule.class);
@@ -116,7 +116,7 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
     }
   }
        ```
-    4)Android自定义Weex控件<br>
+    四.Android自定义Weex控件<br>
     ```
     Application里先注册：
       WXSDKEngine.registerComponent("mtext",TestComponent.class);
