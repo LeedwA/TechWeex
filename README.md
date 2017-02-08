@@ -155,8 +155,8 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
     
   ```
   
-##4.资料集合
 
+##4.资料集合
 [WEEX 初级教程](https://weex-project.io/cn/guide/integrate-to-your-app.html)  <br>
 [WEEX 进阶教程](https://weex-project.io/cn/references/android-apis.html)  <br>
 [WEEX github地址](https://github.com/alibaba/weex)  <br>
