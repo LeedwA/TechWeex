@@ -10,7 +10,7 @@
     compile 'com.github.goEcar:EcarWeex:+'
 
 ##3.调用方法
-*一.Android加载Weex*<br>
+**一.Android加载Weex**<br>
 1)Application加入<br>
  ```
 @Override
@@ -66,7 +66,7 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
              1.cmd 进入.we文件目录 <br>
              2.执行  weex  xxxx.we命令生成js文件 <br>
              3.将js文件复制到asset文件夹 <br>
- 二.Android自定义Weex控件<br>
+**二.Android自定义Weex控件**<br>
  ```
  public class TextImageAdapter implements IWXImgLoaderAdapter {
   @Override
@@ -85,7 +85,7 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
   }  
 }
 ```
-三.weex调用Android方法
+**三.weex调用Android方法**
 ```
        Application里先注册：
        WXSDKEngine.registerModule("mModule",TestModule.class);
@@ -116,7 +116,7 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
     }
   }
 ```
-四.Android自定义Weex控件<br>
+**四.Android自定义Weex控件**<br>
    ```
     Application里先注册：
       WXSDKEngine.registerComponent("mtext",TestComponent.class);
@@ -151,15 +151,15 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
     
         <div>
       <mtext tel="123456" style="width:200;height:100">123456</mtext>
-    </div>
-    
-  ```
-  
+    </div>   
+```
+
 
 ##4.资料集合
 [WEEX 初级教程](https://weex-project.io/cn/guide/integrate-to-your-app.html)  <br>
 [WEEX 进阶教程](https://weex-project.io/cn/references/android-apis.html)  <br>
 [WEEX github地址](https://github.com/alibaba/weex)  <br>
 [weex项目实战篇（二）](http://www.07net01.com/2017/02/1797605.html)  <br>
-  
+
+
   
