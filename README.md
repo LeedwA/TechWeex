@@ -162,5 +162,6 @@ WXSDKEngine.registerModule("mModule",TestModule.class);
 [weex项目实战篇](http://www.07net01.com/2017/02/1797605.html)  <br>
 [Weex Android SDK源码分析之界面渲染（上）](http://blog.csdn.net/walid1992/article/details/51705371)  <br>
 [Weex Android SDK源码分析之界面渲染（下）](http://blog.csdn.net/walid1992/article/details/51759588?locationNum=2&fps=1)  <br>
+[Weex 入坑指南：快速开始 Weex 之旅](https://zhuanlan.zhihu.com/p/25177344)  <br>
 
   
