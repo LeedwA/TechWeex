@@ -8,7 +8,7 @@
     </div>
       <div>
      <text >==================以下是weex调用native===============</text>
-              </div>
+      </div>
     <div>
         <text class="test" onclick="click">点我测试吐司</text>
      </div>
@@ -19,6 +19,7 @@
         <image class="thumb" src="drawable://ic_launcher"></image>
         <text class="title">JavaScript</text>
     </div>
+
     <div class="cell">
         <image class="thumb" src="http://t.cn/RGE3uo9"></image>
         <text class="title">Java</text>

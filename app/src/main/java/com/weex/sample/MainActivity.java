@@ -2,6 +2,8 @@ package com.weex.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -9,6 +11,24 @@ import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXFileUtils;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
+import urils.ecaray.com.ecarutils.Utils.FileUtil;
+import urils.ecaray.com.ecarutils.Utils.FileUtils;
+
+import static com.taobao.weex.common.WXConfig.os;
 
 public class MainActivity extends AppCompatActivity implements IWXRenderListener {
 
@@ -31,7 +51,26 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
          * width 为-1 默认全屏，可以自己定制。
          * height =-1 默认全屏，可以自己定制。
          */
-        mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset("hello.js", this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
+
+        //加载asset的hello.js
+//        mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset("hello.js", this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
+
+        //加载cache的hello.js
+        FileUtils.createFileByDeleteOldFile((String)TextUtils.concat(getCacheDir().getAbsolutePath(),File.separator,"hello.js"));
+        inputstreamtofile(getResources().openRawResource(R.raw.hello),
+                new File((String)TextUtils.concat(getCacheDir().getAbsolutePath(),File.separator,"hello.js")));
+        try {
+            mWXSDKInstance.render("WXSample",
+                    getString(new FileInputStream((String)TextUtils.concat(getCacheDir().getAbsolutePath(),File.separator,"hello.js"))),
+                    null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        //加载网络的hello.js
+//        mWXSDKInstance.renderByUrl(getPackageName(), "http://192.168.0.52/parkCloud/wechat/hello.js", null, null, -1,
+//              -1, WXRenderStrategy.APPEND_ASYNC);
     }
 
     @Override
@@ -86,5 +125,43 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
         if (mWXSDKInstance != null) {
             mWXSDKInstance.onActivityDestroy();
         }
+    }
+
+
+
+    public static String getString(InputStream inputStream) {
+        InputStreamReader inputStreamReader = null;
+        try {
+            inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        BufferedReader reader = new BufferedReader(inputStreamReader);
+        StringBuffer sb = new StringBuffer("");
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+                sb.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
+    public void inputstreamtofile(InputStream ins,File file){
+        try {
+            OutputStream os = new FileOutputStream(file);
+            int bytesRead = 0;
+            byte[] buffer = new byte[8192];
+            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            os.close();
+            ins.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
